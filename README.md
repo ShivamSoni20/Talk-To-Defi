@@ -91,6 +91,21 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser. Connect your wallet, launch the dashboard, and type your first intent!
 
+### 4. Vercel Deployment Troubleshooting
+If you deploy this project to Vercel and encounter a `Module not found: Can't resolve '@react-native-async-storage/async-storage'` or `pino-pretty` error during the build process, you need to update your `frontend/next.config.mjs` to ignore these optional WalletConnect dependencies. 
+
+Add the following to your `frontend/next.config.mjs`:
+```javascript
+const nextConfig = {
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false, net: false, tls: false };
+    config.externals.push('pino-pretty', 'lokijs', 'encoding', '@react-native-async-storage/async-storage');
+    return config;
+  },
+};
+export default nextConfig;
+```
+
 ---
 
 ## 📂 Repository Structure
