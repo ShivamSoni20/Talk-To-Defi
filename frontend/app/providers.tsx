@@ -14,7 +14,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 const config = getDefaultConfig({
   appName: "Talk to DeFi",
-  projectId: "d2d48c08af7eec03d2948bb0c1692e54", // Free public WalletConnect project ID for testing
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "d2d48c08af7eec03d2948bb0c1692e54",
   chains: [avalancheFuji],
   ssr: true, 
 });
