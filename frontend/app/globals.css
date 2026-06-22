@@ -442,3 +442,39 @@ html, body {
 }
 .erc-item .erc-event { color: #c084fc; margin-bottom: 2px; }
 .erc-item .erc-val { color: var(--white); }
+
+/* ─── RESPONSIVE DESIGN ─── */
+@media (max-width: 1024px) {
+  .app {
+    flex-direction: column;
+    overflow-y: auto;
+    height: auto;
+    min-height: calc(100vh - 52px);
+  }
+  .sidebar, .right-panel {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .main {
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .tb-nav {
+    display: none;
+  }
+  .tb-logo-text span {
+    display: none;
+  }
+  .agent-card {
+    padding: 10px;
+  }
+  .msg-bubble {
+    max-width: 90%;
+  }
+  #chat-input {
+    font-size: 16px; /* prevent iOS zoom */
+  }
+}

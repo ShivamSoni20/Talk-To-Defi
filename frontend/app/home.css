@@ -322,8 +322,12 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero { padding: 90px 20px 60px; }
-  .features, .cta-section { padding: 60px 20px; }
+  .hero { padding: 90px 10px 60px; }
+  .hero-headline { font-size: clamp(32px, 8vw, 88px); }
+  .hero-sub { font-size: 14px; }
+  .features, .cta-section { padding: 60px 10px; }
   .feat-grid { grid-template-columns: 1fr; }
-  footer { padding: 20px; flex-direction: column; gap: 8px; }
+  footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  .terminal-body { padding: 10px; }
+  .t-row { font-size: 11px; }
 }
