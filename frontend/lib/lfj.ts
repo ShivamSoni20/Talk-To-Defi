@@ -37,7 +37,7 @@ export async function swapAVAXToUSDC(avaxAmount: number): Promise<{
   const path = [WAVAX_FUJI, process.env.USDC_ADDRESS!];
 
   const amounts = await router.getAmountsOut(amountInWei, path);
-  const amountOutMin = (amounts[1] * 99n) / 100n;
+  const amountOutMin = (amounts[1] * BigInt(99)) / BigInt(100);
 
   const deadline = Math.floor(Date.now() / 1000) + 300;
 
