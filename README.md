@@ -39,18 +39,18 @@ We built this project specifically for the **Speedrun June 2026** hackathon, suc
 
 ```mermaid
 graph TD
-    User([User]) -->|1. Type Intent| UI["Next.js Frontend"]
-    UI -->|2. POST /api/intent| Agent["Claude 3.5 Sonnet"]
+    User([User]) -->|1. Type Intent| UI[Next.js Frontend]
+    UI -->|2. POST API| Agent[Claude AI]
     
-    subgraph "Execution Engine (Node.js)"
-        Agent -->|3. Route intent| Router{"DeFi Router"}
-        Router -->|4. Buy Data (x402)| Oracle["x402 Data Oracle"]
-        Oracle -->|5. Return Live APY| Router
+    subgraph ExecutionEngine
+        Agent -->|3. Route intent| Router{DeFi Router}
+        Router -->|4. Buy Data| Oracle[x402 Data Oracle]
+        Oracle -->|5. Return APY| Router
     end
     
-    subgraph "Avalanche C-Chain (Fuji)"
-        Router -->|6. Execute Tx| Protocol["LFJ / BENQI / Aave"]
-        Protocol -->|7. Update Agent Score| ERC8004["ERC-8004 Reputation Registry"]
+    subgraph AvalancheChain
+        Router -->|6. Execute Tx| Protocol[LFJ / BENQI / Aave]
+        Protocol -->|7. Update Score| ERC8004[ERC8004 Registry]
     end
 ```
 
