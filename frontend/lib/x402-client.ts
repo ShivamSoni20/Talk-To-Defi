@@ -23,8 +23,14 @@ export async function fetchAPYData(): Promise<{
 }> {
   const fetchWithPayment = createX402Client();
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
-    || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+  let baseUrl = "http://localhost:3000";
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    baseUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  } else if (process.env.VERCEL_URL) {
+    baseUrl = `https://${process.env.VERCEL_URL}`;
+  } else if (process.env.NEXT_PUBLIC_BASE_URL && process.env.NEXT_PUBLIC_BASE_URL !== "http://localhost:3000") {
+    baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  }
 
   const response = await fetchWithPayment(
     `${baseUrl}/api/apy`,
