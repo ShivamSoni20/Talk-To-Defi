@@ -5,11 +5,14 @@ import ChatWindow from "@/components/ChatWindow";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import PortfolioView from "@/components/PortfolioView";
+import HistoryView from "@/components/HistoryView";
 
 export default function DashboardPage() {
   const { isConnected } = useAccount();
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState<"chat" | "portfolio" | "history">("chat");
 
   useEffect(() => {
     if (!isConnected) {
@@ -28,10 +31,6 @@ export default function DashboardPage() {
           <div className="tb-logo-text">Talk to <span>DeFi</span></div>
         </div>
         <div className="tb-nav">
-          <div className="tb-nav-item active">Chat</div>
-          <div className="tb-nav-item">Portfolio</div>
-          <div className="tb-nav-item">History</div>
-          <div className="tb-nav-item">Agent</div>
         </div>
         <div className="tb-right">
           <div className="tb-network"><div className="tb-dot"></div>FUJI TESTNET</div>
@@ -42,6 +41,20 @@ export default function DashboardPage() {
 
       <div className="app">
         <aside className="sidebar">
+          <div className="sb-section" style={{ borderBottom: 'none', paddingBottom: '0' }}>
+            <div className="sb-nav">
+              <div className={`sb-nav-item ${activeTab === 'chat' ? 'active' : ''}`} onClick={() => setActiveTab('chat')}>
+                <div className="sb-nav-icon">💬</div> Chat
+              </div>
+              <div className={`sb-nav-item ${activeTab === 'portfolio' ? 'active' : ''}`} onClick={() => setActiveTab('portfolio')}>
+                <div className="sb-nav-icon">💼</div> Portfolio
+              </div>
+              <div className={`sb-nav-item ${activeTab === 'history' ? 'active' : ''}`} onClick={() => setActiveTab('history')}>
+                <div className="sb-nav-icon">📜</div> History
+              </div>
+            </div>
+          </div>
+
           <div className="sb-section">
             <div className="sb-label">Your Agent</div>
             <div className="agent-card">
@@ -120,7 +133,9 @@ export default function DashboardPage() {
           </div>
         </aside>
 
-        <ChatWindow />
+        {activeTab === 'chat' && <ChatWindow />}
+        {activeTab === 'portfolio' && <PortfolioView />}
+        {activeTab === 'history' && <HistoryView />}
 
         <aside className="right-panel">
           <div className="rp-section">

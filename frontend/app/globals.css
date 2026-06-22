@@ -159,6 +159,22 @@ html, body {
   color: var(--faint); text-transform: uppercase; margin-bottom: 10px;
 }
 
+/* SIDEBAR NAV */
+.sb-nav { display: flex; flex-direction: column; gap: 4px; }
+.sb-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 8px;
+  font-size: 13px; color: var(--muted); cursor: pointer;
+  transition: all 0.12s; border: 1px solid transparent;
+}
+.sb-nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+.sb-nav-item.active { 
+  color: var(--white); background: var(--card); 
+  border-color: var(--border); font-weight: 500;
+}
+.sb-nav-icon { font-size: 16px; flex-shrink: 0; }
+
+
 /* AGENT CARD */
 .agent-card {
   background: var(--card);
